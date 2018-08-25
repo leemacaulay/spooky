@@ -1,0 +1,31 @@
+logLevel = "DEBUG"
+
+defaultEntryPoints = ["http", "https"]
+
+[api]
+dashboard = true
+entrypoint = "webentry"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+  [entryPoints.webentry]
+    address = ":8080"
+      [entryPoints.webentry.auth]
+        [entryPoints.webentry.auth.basic]
+          users = ["***REMOVED***"]
+
+[acme]
+email = "***REMOVED***"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+onDemand = false
+
+[acme.httpChallenge]
+entryPoint = "http"

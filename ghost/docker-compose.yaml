@@ -1,0 +1,25 @@
+version: '3.1'
+
+volumes:
+  db-volume:
+  ghost-volume:
+
+services:
+  db:
+    image: mariadb
+    restart: unless-stopped
+    container_name: db
+    volumes:
+      - db-volume:/var/lib/mysql
+
+  ghost:
+    build: ./build
+    image: lmcly/ghost:2.0.3
+    container_name: ghost
+    volumes:
+      - ghost-volume:/var/lib/ghost
+    restart: unless-stopped
+    depends_on:
+      - db
+    entrypoint: ["wait-for-it.sh", "db", "--", "docker-entrypoint.sh"]
+    command: ["node", "current/index.js"]
