@@ -18,7 +18,7 @@ entrypoint = "webentry"
     address = ":8080"
       [entryPoints.webentry.auth]
         [entryPoints.webentry.auth.basic]
-          users = [""]
+          users = ["username:passwordhash"]
 
 [acme]
 email = "***REMOVED***"

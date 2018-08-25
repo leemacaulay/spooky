@@ -1,0 +1,4 @@
+traefik:
+  labels:
+    - traefik.frontend.rule=Host:***REMOVED***
+    - traefik.port=8080  
