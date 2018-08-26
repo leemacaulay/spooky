@@ -41,10 +41,9 @@ TRAEFIK_MONITOR_DOMAIN | monitor.example.com | optional
 Before you start, you'll need:
 
 - An Ubuntu 16.04 server with Docker and Docker Compose. I recommend firing up a DigitalOcean [Docker Droplet](https://www.digitalocean.com/products/one-click-apps/docker/). $5 a month will get you 1GB memory, 25 GB storage
-and 1 TB transfer bandwidth.
+and 1 TB transfer bandwidth. If you decide to go with DigitalOcean, you can amend and paste cloud-config.yaml by ticking the box [ ] User Data when setting up the droplet.
 - A domain (example.com) and subdomain (monitor.example.com) pointing towards this server. I use [Cloudflare](cloudflare.com) for DNS.
 ---
-
 1. Copy or git clone this repo to `/opt` or your home folders. If you choose `/opt` remember to prefix commands with `sudo` where needed.
 2. In traefik/traefik.toml:
   - Add your email address in the [acme] section
