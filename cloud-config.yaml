@@ -1,0 +1,12 @@
+#cloud-config
+users:
+  - name: lmcly
+    ssh-authorized-keys:
+      - ssh-rsa ***REMOVED***
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo, docker
+    shell: /bin/bash
+runcmd:
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - sed -i -e '$aAllowUsers demo' /etc/ssh/sshd_config
+  - restart ssh

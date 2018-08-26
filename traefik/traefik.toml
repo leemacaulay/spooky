@@ -21,7 +21,7 @@ entrypoint = "webentry"
           users = ["username:passwordhash"]
 
 [acme]
-email = "***REMOVED***"
+email = "name@example.com"
 storage = "acme.json"
 entryPoint = "https"
 onHostRule = true

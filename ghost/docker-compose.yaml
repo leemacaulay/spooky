@@ -8,14 +8,17 @@ networks:
   proxy:
     external:
       name: traefik_default
+  backend:
 
 services:
   db:
-    image: mariadb
+    image: mariadb:10.3.9
     restart: unless-stopped
     container_name: db
     volumes:
       - db-volume:/var/lib/mysql
+    networks:
+      - backend
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
@@ -29,6 +32,9 @@ services:
     volumes:
       - ghost-volume:/var/lib/ghost
     restart: unless-stopped
+    networks:
+      - proxy
+      - backend
     ports:
       - 2368
     environment:

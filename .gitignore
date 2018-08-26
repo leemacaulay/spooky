@@ -1,0 +1,5 @@
+# Production
+
+*/.env
+traefik/traefik.toml
+traefik/acme.json
