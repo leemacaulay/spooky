@@ -4,6 +4,11 @@ volumes:
   db-volume:
   ghost-volume:
 
+networks:
+  proxy:
+    external:
+      name: traefik_default
+
 services:
   db:
     image: mariadb
@@ -11,6 +16,11 @@ services:
     container_name: db
     volumes:
       - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
 
   ghost:
     build: ./build
@@ -19,7 +29,21 @@ services:
     volumes:
       - ghost-volume:/var/lib/ghost
     restart: unless-stopped
+    ports:
+      - 2368
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: $MYSQL_USER
+      database__connection__password: $MYSQL_PASSWORD
+      database__connection__database: $MYSQL_DATABASE
+      url: https://$GHOST_DOMAIN
     depends_on:
       - db
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_default
+      - traefik.frontend.rule=Host:$GHOST_DOMAIN
+      - traefik.port=2368
     entrypoint: ["wait-for-it.sh", "db", "--", "docker-entrypoint.sh"]
     command: ["node", "current/index.js"]
