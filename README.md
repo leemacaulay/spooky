@@ -6,7 +6,7 @@ spooky is a hauntingly convoluted way to:
 - run its database using MySQL compatible [MariaDB](https://mariadb.org/) in another container;
 - and serve it on a reverse proxy using [Traefik](https://traefik.io/) with free HTTPS provided by [Let's Encrypt](https://letsencrypt.org/).
 
-This is hosting my personal portfolio site, lmcly.fyi.
+This is _going to_ host my personal portfolio site, lmcly.fyi.
 
 I put this together in a few hours on a bank holiday weekend by judiciously borrowing from other people's tutorials or blog posts.
 
