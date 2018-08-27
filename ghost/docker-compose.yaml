@@ -36,14 +36,14 @@ services:
       - proxy
       - backend
     ports:
-      - 2368:2368
+      - 2368
     environment:
       database__client: mysql
       database__connection__host: db
       database__connection__user: $MYSQL_USER
       database__connection__password: $MYSQL_PASSWORD
       database__connection__database: $MYSQL_DATABASE
-      url: $GHOST_DOMAIN
+      url: https://$GHOST_DOMAIN
     depends_on:
       - db
     labels:
