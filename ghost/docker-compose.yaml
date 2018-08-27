@@ -44,6 +44,11 @@ services:
       database__connection__password: $MYSQL_PASSWORD
       database__connection__database: $MYSQL_DATABASE
       url: https://$GHOST_DOMAIN
+      storage__active: s3
+      storage__s3__accessKeyId:
+      storage__s3__secretAccessKey:
+      storage__s3__region:
+      storage__s3__bucket:
     depends_on:
       - db
     labels:
