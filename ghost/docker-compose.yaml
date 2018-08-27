@@ -44,12 +44,6 @@ services:
       database__connection__password: $MYSQL_PASSWORD
       database__connection__database: $MYSQL_DATABASE
       url: $GHOST_DOMAIN
-      storage__active: s3
-      AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-      AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-      GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET: $GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET
-      AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-      AWS_SIGNATURE_VERSION: $AWS_SIGNATURE_VERSION
     depends_on:
       - db
     labels:
