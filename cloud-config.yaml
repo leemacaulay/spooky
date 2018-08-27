@@ -10,6 +10,7 @@ runcmd:
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - sed -i -e '$aAllowUsers username' /etc/ssh/sshd_config
   - ufw allow OpenSSH
-  - ufw allow 80,443
-  - ufw enable  
+  - ufw allow http
+  - ufw allow https
+  - ufw enable
   - restart ssh
