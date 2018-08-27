@@ -24,7 +24,7 @@ Here's what you need to know:
 
 ##### ghost/.env
 
-env                 | defaults    | notes
+Ghost config        | defaults    | notes
 --------------------|-------------|-------------------
 MYSQL_ROOT_PASSWORD | changeme    |
 MYSQL_DATABASE      | db          |
@@ -32,11 +32,21 @@ MYSQL_USER          | spooky_user |
 MYSQL_PASSWORD      | changeme    |
 GHOST_DOMAIN        | example.com |
 
+S3 Storage config                    | defaults          | notes
+-------------------------------------|-------------------|------
+GHOST_STORAGE                        | s3                |
+AWS_ACCESS_KEY_ID                    |                   |
+AWS_SECRET_ACCESS_KEY                |                   |  
+GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET | media.example.com |
+AWS_DEFAULT_REGION                   | eu-west-2         |
+AWS_SIGNATURE_VERSION                | v4                | Needed for most newer zones
+
 ##### traefik/.env
 
-env                    | defaults             | notes
+env                    | defaults            | notes
 -----------------------|---------------------|-------------------
 TRAEFIK_MONITOR_DOMAIN | monitor.example.com | optional
+TRAEFIK_MONITOR_AUTH   | traefik:$apr1$sTeeHqHw$MzQLko5A3UUoqEzC/a.FT0 | u: traefik p:password
 
 #### Setup
 

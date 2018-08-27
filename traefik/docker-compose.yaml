@@ -14,5 +14,6 @@ services:
       - ./acme.json:/acme.json
     labels:
       - traefik.frontend.rule=Host:$TRAEFIK_MONITOR_DOMAIN
+      - traefik.frontend.auth.basic=$TRAEFIK_MONITOR_AUTH
       - traefik.port=8080
     container_name: traefik

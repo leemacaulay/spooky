@@ -16,9 +16,6 @@ entrypoint = "webentry"
     [entryPoints.https.tls]
   [entryPoints.webentry]
     address = ":8080"
-      [entryPoints.webentry.auth]
-        [entryPoints.webentry.auth.basic]
-          users = ["username:passwordhash"]
 
 [acme]
 email = "name@example.com"
