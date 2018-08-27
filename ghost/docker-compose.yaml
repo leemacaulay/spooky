@@ -5,9 +5,9 @@ volumes:
   ghost-volume:
 
 networks:
-  proxy:
-    external:
-      name: traefik_default
+#  proxy:
+#    external:
+#      name: traefik_default
   backend:
 
 services:
@@ -30,20 +30,24 @@ services:
     image: lmcly/ghost:2.0.3
     container_name: ghost
     volumes:
-      - ghost-volume:/var/lib/ghost
+      - ghost-volume:/var/lib/ghost/content
     restart: unless-stopped
     networks:
-      - proxy
+#      - proxy
       - backend
     ports:
-      - 2368
+      - 2368:2368
     environment:
       database__client: mysql
       database__connection__host: db
       database__connection__user: $MYSQL_USER
       database__connection__password: $MYSQL_PASSWORD
       database__connection__database: $MYSQL_DATABASE
-      url: https://$GHOST_DOMAIN
+      url: $GHOST_DOMAIN
+      storage__active: s3
+      AWS_ACCESS_KEY_ID: ***REMOVED***
+      AWS_SECRET_ACCESS_KEY: ***REMOVED***
+      GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET: m.spooky.lmcly.fyi
     depends_on:
       - db
     labels:
