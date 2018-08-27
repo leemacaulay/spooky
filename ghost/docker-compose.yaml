@@ -5,9 +5,9 @@ volumes:
   ghost-volume:
 
 networks:
-#  proxy:
-#    external:
-#      name: traefik_default
+  proxy:
+    external:
+      name: traefik_default
   backend:
 
 services:
@@ -33,7 +33,7 @@ services:
       - ghost-volume:/var/lib/ghost/content
     restart: unless-stopped
     networks:
-#      - proxy
+      - proxy
       - backend
     ports:
       - 2368:2368
